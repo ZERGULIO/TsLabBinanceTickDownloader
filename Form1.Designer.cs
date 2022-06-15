@@ -37,6 +37,7 @@
             this.label_coin_selected = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -125,6 +126,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label_coin_selected);
             this.groupBox2.Location = new System.Drawing.Point(151, 67);
@@ -132,6 +134,15 @@
             this.groupBox2.Size = new System.Drawing.Size(404, 244);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(82, 155);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "label1";
             // 
             // label4
             // 
@@ -145,6 +156,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(12, 288);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 23);
@@ -184,10 +196,11 @@
         private RadioButton radioButton1;
         private RadioButton radioButton2;
         private GroupBox groupBox1;
-        private Label label_coin_selected;
         private PictureBox pictureBox1;
         private GroupBox groupBox2;
         private Label label4;
         private Button button1;
+        private Label label1;
+        public Label label_coin_selected;
     }
 }
