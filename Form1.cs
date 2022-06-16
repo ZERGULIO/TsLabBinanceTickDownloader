@@ -435,5 +435,10 @@ namespace TsLabBinanceTickDownloader
             System.Diagnostics.Process.Start("cmd", parameters);
             Environment.Exit(0);
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("explorer.exe", "https://github.com/ZERGULIO/TsLabBinanceTickDownloader");
+        }
     }
 }

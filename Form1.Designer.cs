@@ -50,6 +50,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.logbox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -280,7 +281,7 @@
             this.logbox.Location = new System.Drawing.Point(12, 322);
             this.logbox.Multiline = true;
             this.logbox.Name = "logbox";
-            this.logbox.Size = new System.Drawing.Size(543, 157);
+            this.logbox.Size = new System.Drawing.Size(543, 150);
             this.logbox.TabIndex = 16;
             // 
             // button1
@@ -295,12 +296,24 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(419, 475);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(136, 15);
+            this.linkLabel1.TabIndex = 17;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Репозиторий на GitHub";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(567, 491);
+            this.ClientSize = new System.Drawing.Size(567, 494);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.logbox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
@@ -347,5 +360,6 @@
         private Button button4;
         private Button button3;
         private Label label7;
+        private LinkLabel linkLabel1;
     }
 }
