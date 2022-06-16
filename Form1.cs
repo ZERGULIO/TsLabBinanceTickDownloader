@@ -272,7 +272,7 @@ namespace TsLabBinanceTickDownloader
         }
         private void button3_Click(object sender, EventArgs e) // Папка Tslab с кешами в AppData
         {
-            Process.Start("explorer", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            Process.Start("explorer", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\TSLab\TSLab 2.0");
         }
         private void button4_Click(object sender, EventArgs e) // Папка с Тиками
         {
