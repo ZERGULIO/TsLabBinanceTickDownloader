@@ -7,10 +7,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>TSBTD</AssemblyName>
+    <ApplicationIcon>bnb.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OctaneEngineCore" Version="2.1.0" />
+    <Content Include="bnb.ico" />
   </ItemGroup>
 
   <ItemGroup>
