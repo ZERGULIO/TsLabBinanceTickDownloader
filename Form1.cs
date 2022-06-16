@@ -432,7 +432,6 @@ namespace TsLabBinanceTickDownloader
             }
             string parameters = String.Format("/k \"{0}\"", Core_Folder + "run.bat");
             System.Diagnostics.Process.Start("cmd", parameters);
-            Environment.Exit(0);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
