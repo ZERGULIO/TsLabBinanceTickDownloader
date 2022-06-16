@@ -21,14 +21,16 @@ namespace TsLabBinanceTickDownloader
 
         public Form1()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             InitializeComponent();
             Folder_Work();
-            this.Text = "TSBDT v" + version;
+            this.Text = "TSBDT-v" + version;
         }
         public static List<string> arr_coin = new List<string>() { };
         private void Form1_Load(object sender, EventArgs e)
         {
             Log("Выберите - Тип рынка - в верхнем левом углу");
+            Check_Version();
         }
         public string Get_Html_Code(string url)
         {
@@ -439,6 +441,27 @@ namespace TsLabBinanceTickDownloader
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("explorer.exe", "https://github.com/ZERGULIO/TsLabBinanceTickDownloader");
+        }
+        public void Check_Version()
+        {
+            // Адрес ресурса, к которому выполняется запрос
+            string url = "https://github.com/ZERGULIO/TsLabBinanceTickDownloader/releases";
+            var data = "sdfsdg";
+            CookieContainer cookies = new CookieContainer();
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+            req.CookieContainer = cookies;
+            req.Headers.Add("DNT", "1");
+            req.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0";
+            req.Referer = "https://www.cyberforum.ru/";
+            req.ContentType = "application/x-www-form-urlencoded";
+            using (var requestStream = req.GetRequestStream())
+            using (var responseStream = req.GetResponse().GetResponseStream())
+            
+            Log(responseStream.ToString());
+            
+
         }
     }
 }
