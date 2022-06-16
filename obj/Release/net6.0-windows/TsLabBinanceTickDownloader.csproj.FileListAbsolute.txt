@@ -3,7 +3,6 @@ D:\SOFT\VSProject\TsLabBinanceTickDownloader\bin\Release\net6.0-windows\TSBTD.de
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\bin\Release\net6.0-windows\TSBTD.runtimeconfig.json
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\bin\Release\net6.0-windows\TSBTD.dll
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\bin\Release\net6.0-windows\TSBTD.pdb
-D:\SOFT\VSProject\TsLabBinanceTickDownloader\bin\Release\net6.0-windows\OctaneEngine.dll
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBinanceTickDownloader.csproj.AssemblyReference.cache
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBinanceTickDownloader.Form1.resources
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBinanceTickDownloader.Properties.Resources.resources
@@ -12,7 +11,6 @@ D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBin
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBinanceTickDownloader.AssemblyInfoInputs.cache
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBinanceTickDownloader.AssemblyInfo.cs
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBinanceTickDownloader.csproj.CoreCompileInputs.cache
-D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TsLabBinanceTickDownloader.csproj.CopyComplete
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TSBTD.dll
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\refint\TSBTD.dll
 D:\SOFT\VSProject\TsLabBinanceTickDownloader\obj\Release\net6.0-windows\TSBTD.pdb

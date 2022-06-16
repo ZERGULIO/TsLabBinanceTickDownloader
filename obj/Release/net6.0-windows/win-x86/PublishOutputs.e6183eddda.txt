@@ -1,0 +1,2 @@
+D:\SOFT\VSProject\TsLabBinanceTickDownloader\bin\Release\net6.0-windows\publish\win-x86\TSBTD.pdb
+D:\SOFT\VSProject\TsLabBinanceTickDownloader\bin\Release\net6.0-windows\publish\win-x86\TSBTD.exe
