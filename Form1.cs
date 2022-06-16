@@ -23,7 +23,7 @@ namespace TsLabBinanceTickDownloader
         {
             InitializeComponent();
             Folder_Work();
-            this.Text = "TSBDT ver." + version;
+            this.Text = "TSBDT v" + version;
         }
         public static List<string> arr_coin = new List<string>() { };
         private void Form1_Load(object sender, EventArgs e)
