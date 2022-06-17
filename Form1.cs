@@ -15,7 +15,7 @@ namespace TsLabBinanceTickDownloader
         public string Core_Folder = Directory.GetCurrentDirectory() + @"\Core\";
         public string Temp_Folder = Directory.GetCurrentDirectory() + @"\Core\Temp_Folder\";
         static List<string> new_list = new List<string>();
-        string version = "1.0";
+        string version = "1.1";
 
         public Form1()
         {
@@ -220,6 +220,8 @@ namespace TsLabBinanceTickDownloader
         }
         public async Task Download_File(int max)
         {
+            int unlock = 0;
+            int thread = 4;
             block();
             int index = 0;
             string get_url()
@@ -232,9 +234,10 @@ namespace TsLabBinanceTickDownloader
             }
             var tasks = new List<Task>();
             int dow = 0;
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < thread; i++)
             {
                 tasks.Add(Task.Run(() => {
+                    
                     while (true) 
                     {
                         dow++;
@@ -247,7 +250,7 @@ namespace TsLabBinanceTickDownloader
                                 if(dow > max) { break; }
                                 string filename = Path.GetFileName(url);
                                 client.DownloadFile(url, Temp_Folder + filename);
-                                Log("Download + " + filename);
+                                Log("Загрузка + " + filename);
                             }
                             catch (Exception e)
                             {
@@ -256,11 +259,17 @@ namespace TsLabBinanceTickDownloader
                             }
                         }
                     }
+                    unlock++;
+                    if(unlock >= thread)
+                    {
+                        this.unlock();
+                        Log("Завершили загрузку архивов");
+                        Extract_Arhives();
+                    }
                 }));
             }
-            Task.WaitAll(tasks.ToArray());
-            Log("Завершили загрузку архивов");
-            Extract_Arhives();
+            //Task.WaitAll(tasks.ToArray());
+            
         }
         private void textBox1_Click(object sender, EventArgs e)
         {
@@ -280,6 +289,15 @@ namespace TsLabBinanceTickDownloader
         }
         private void button2_Click(object sender, EventArgs e) // Кнопка начала - Загрузки
         {
+            if (Directory.Exists(Temp_Folder))
+            {
+                Directory.Delete(Temp_Folder, true);
+                Directory.CreateDirectory(Temp_Folder);
+            }
+            else
+            {
+                Directory.CreateDirectory(Temp_Folder);
+            }
             Log("Запуск загрузки - Кол-во дней истории - " + numericUpDown1.Value);
             Download_File((int)numericUpDown1.Value);
         }
@@ -432,12 +450,16 @@ namespace TsLabBinanceTickDownloader
             }
             string parameters = String.Format("/k \"{0}\"", Core_Folder + "run.bat");
             System.Diagnostics.Process.Start("cmd", parameters);
-            unlock();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("explorer.exe", "https://github.com/ZERGULIO/TsLabBinanceTickDownloader");
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Environment.Exit(1);
         }
     }
 }

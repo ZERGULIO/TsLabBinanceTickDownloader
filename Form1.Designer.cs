@@ -220,7 +220,7 @@
             this.numericUpDown1.Enabled = false;
             this.numericUpDown1.Location = new System.Drawing.Point(17, 127);
             this.numericUpDown1.Minimum = new decimal(new int[] {
-            3,
+            4,
             0,
             0,
             0});
@@ -229,7 +229,7 @@
             this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown1.Value = new decimal(new int[] {
-            3,
+            4,
             0,
             0,
             0});
@@ -326,6 +326,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
