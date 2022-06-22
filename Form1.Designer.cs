@@ -51,6 +51,7 @@
             this.logbox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -233,6 +234,7 @@
             0,
             0,
             0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label3
             // 
@@ -277,7 +279,7 @@
             // logbox
             // 
             this.logbox.BackColor = System.Drawing.Color.Gainsboro;
-            this.logbox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.logbox.ForeColor = System.Drawing.Color.Black;
             this.logbox.Location = new System.Drawing.Point(12, 322);
             this.logbox.Multiline = true;
             this.logbox.Name = "logbox";
@@ -307,12 +309,22 @@
             this.linkLabel1.Text = "Репозиторий на GitHub";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(261, 475);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(10, 15);
+            this.label8.TabIndex = 18;
+            this.label8.Text = " ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(567, 494);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.logbox);
             this.Controls.Add(this.button1);
@@ -362,5 +374,6 @@
         private Button button3;
         private Label label7;
         private LinkLabel linkLabel1;
+        private Label label8;
     }
 }

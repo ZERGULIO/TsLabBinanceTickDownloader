@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using System.Net;
-using System.Xml;
 using System.IO.Compression;
+using System.Net;
 using System.Text;
+using System.Xml;
 
 namespace TsLabBinanceTickDownloader
 {
@@ -15,19 +15,23 @@ namespace TsLabBinanceTickDownloader
         public string Core_Folder = Directory.GetCurrentDirectory() + @"\Core\";
         public string Temp_Folder = Directory.GetCurrentDirectory() + @"\Core\Temp_Folder\";
         static List<string> new_list = new List<string>();
-        string version = "1.1";
-
+        string version = "1.2";
+        int thread = 5;
         public Form1()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             InitializeComponent();
             Folder_Work();
-            this.Text = "TSBDT-v" + version;
+            this.Text = "TSBDT v" + version;
         }
         public static List<string> arr_coin = new List<string>() { };
         private void Form1_Load(object sender, EventArgs e)
         {
+            Log("-- В настройках поставщика в TsLab выставите Глубину загрузки тиков не менее 3000 минут.");
+            Log("-- Если включена настройка - Локальное время - в настройках поставщика, при докачке тиков будет криво отображать время на шкале времени");
             Log("Выберите - Тип рынка - в верхнем левом углу");
+            numericUpDown1.Value = thread;
+            numericUpDown1.Minimum = thread;
         }
         public string Get_Html_Code(string url)
         {
@@ -40,7 +44,7 @@ namespace TsLabBinanceTickDownloader
                 {
                     response = webClient.DownloadString(url);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show(e.ToString());
                 }
@@ -85,7 +89,7 @@ namespace TsLabBinanceTickDownloader
                 foreach (XmlElement element in nodeList)
                 {
                     string text = element.GetElementsByTagName("Key")[0].InnerText;
-                    if(text.IndexOf("CHECKSUM") == -1)
+                    if (text.IndexOf("CHECKSUM") == -1)
                     {
                         list_arhives.Add("https://data.binance.vision/" + text);
                     }
@@ -104,7 +108,7 @@ namespace TsLabBinanceTickDownloader
                 }
             }
         }
-        public  void listbupdate()
+        public void listbupdate()
         {
             listBox1.Items.Clear();
             foreach (var item in arr_coin)
@@ -161,7 +165,7 @@ namespace TsLabBinanceTickDownloader
             button1.Text = "Выбрать";
             button1.BackColor = Color.Gainsboro;
         }
-        public  void coin_setup(string coin_name) // Информация об Инструменте кол-во ит.д
+        public void coin_setup(string coin_name) // Информация об Инструменте кол-во ит.д
         {
             string url_fut_arh = "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/futures/um/daily/aggTrades/";
             string url_spot_arh = "https://s3-ap-northeast-1.amazonaws.com/data.binance.vision?delimiter=/&prefix=data/spot/daily/aggTrades/";
@@ -198,7 +202,7 @@ namespace TsLabBinanceTickDownloader
             }
             numericUpDown1.Enabled = true;
             button2.Enabled = true;
-            if(coin_type == "futures")
+            if (coin_type == "futures")
             {
                 download_url.Clear();
                 for (int i = 1; i < 502; i++)
@@ -216,29 +220,29 @@ namespace TsLabBinanceTickDownloader
                     //Log(download_url[i - 1]);
                 }
             }
-            
+
         }
         public async Task Download_File(int max)
         {
             int unlock = 0;
-            int thread = 4;
             block();
             int index = 0;
             string get_url()
             {
 
-                 string url = download_url[index];
-                 index++;
-                 return url;
+                string url = download_url[index];
+                index++;
+                return url;
 
             }
             var tasks = new List<Task>();
             int dow = 0;
             for (var i = 0; i < thread; i++)
             {
-                tasks.Add(Task.Run(() => {
-                    
-                    while (true) 
+                tasks.Add(Task.Run(() =>
+                {
+
+                    while (true)
                     {
                         dow++;
                         using (var client = new WebClient())
@@ -247,7 +251,7 @@ namespace TsLabBinanceTickDownloader
                             try
                             {
                                 string url = get_url();
-                                if(dow > max) { break; }
+                                if (dow > max) { break; }
                                 string filename = Path.GetFileName(url);
                                 client.DownloadFile(url, Temp_Folder + filename);
                                 Log("Загрузка + " + filename);
@@ -257,19 +261,19 @@ namespace TsLabBinanceTickDownloader
                                 dow--;
                                 continue;
                             }
+                            label8.Text = dow + "/" + max;
                         }
                     }
                     unlock++;
-                    if(unlock >= thread)
+                    if (unlock >= thread)
                     {
-                        this.unlock();
                         Log("Завершили загрузку архивов");
                         Extract_Arhives();
                     }
                 }));
             }
             //Task.WaitAll(tasks.ToArray());
-            
+
         }
         private void textBox1_Click(object sender, EventArgs e)
         {
@@ -344,9 +348,10 @@ namespace TsLabBinanceTickDownloader
                 else
                 {
                     Log("Прога Работать не будет. ВЫ СЛОМАЛИ ЕЁ.... СКАЧАЙТЕ НОРМАЛЬНУЮ СБОРКУ С GITHUBA....");
+                    block();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
@@ -354,17 +359,22 @@ namespace TsLabBinanceTickDownloader
         public void Extract_Arhives()
         {
             string[] arr_file = Directory.GetFiles(Temp_Folder);
+            int i = 0;
             foreach (var item in arr_file)
             {
-
+                i++;
                 Log("Разархивирование - " + Path.GetFileName(item));
                 ZipFile.ExtractToDirectory(item, Temp_Folder);
                 File.Delete(item);
+                label8.Text = i + "/" + arr_file.Length;
             }
             string[] arr_csv = Directory.GetFiles(Temp_Folder);
+            i = 0;
             foreach (var item in arr_csv)
             {
+                i++;
                 Read_CSV(item, Path.GetFileName(item));
+                label8.Text = i + "/" + arr_csv.Length;
             }
             StartCmdBatch();
         }
@@ -447,19 +457,25 @@ namespace TsLabBinanceTickDownloader
                 {
                     w.WriteLine("ConvertTicks.exe " + label_coin_selected.Text + " \"" + item + "\" \\c");
                 }
+                w.WriteLine("start _result");
+                w.WriteLine("exit");
             }
             string parameters = String.Format("/k \"{0}\"", Core_Folder + "run.bat");
             System.Diagnostics.Process.Start("cmd", parameters);
+            this.unlock();
         }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("explorer.exe", "https://github.com/ZERGULIO/TsLabBinanceTickDownloader");
         }
-
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            System.Environment.Exit(1);
+            Environment.Exit(1);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
